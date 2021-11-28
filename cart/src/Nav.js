@@ -8,13 +8,13 @@ const Nav = () => {
     const [items, setItems] = useContext(GlobalContext)
     let [count,setCount] = useState(0)
     console.log(items)
-    const toat =()=>{
+    const total =()=>{
         items.map(item=>
             count+=item.qty)
             console.log(count)
     }
     useEffect(() =>console.log(items),
-    toat()
+   total()
     ,[items])
     return (
         <nav className="nav">

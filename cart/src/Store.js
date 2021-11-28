@@ -40,7 +40,7 @@ const Store = () => {
                     {console.log(item.img)}
                     <h3>{item.name}</h3>
                     <p className="price">${item.price}</p>
-                    {item.delivery!==0 && <p>Free Delivery!</p>}
+                    {item.delivery===0 && <p>Free Delivery!</p>}
                     <p>{item.description}</p>
                     <button value={item} onClick={()=>{ADDitem(item)}} >BUY</button>
                 </div>
