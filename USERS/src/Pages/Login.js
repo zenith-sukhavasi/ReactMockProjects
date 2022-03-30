@@ -1,12 +1,14 @@
 import {  signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { auth } from "../FirebaseConfig";
+import { addUser } from "../Redux/slices/Users";
 
 
 
 const Login = () => {
-
+  const Dispatch = useDispatch()
   const login = async () => {
     try {
       const user = await signInWithEmailAndPassword(
@@ -19,6 +21,8 @@ const Login = () => {
       console.log(auth.currentUser)
       console.log(auth)
       localStorage.setItem("isAuth", true);
+      // Dispatch(addUser(auth.currentUser))
+       Dispatch(addUser({...auth.currentUser}))
     } catch (error) {
       console.log(error.message);
     }

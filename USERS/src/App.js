@@ -6,26 +6,37 @@ import Profile from "./Pages/Profile";
 import { UserProvider } from "./DATA/userContext";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import Sample from "./Pages/Sample";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "@mui/material";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import Home from "./Pages/Home";
 import { auth } from "./FirebaseConfig";
 import User from "./Pages/User";
+import { useDispatch } from "react-redux";
+import { addUser,deleteUser } from "./Redux/slices/Users";
 
 
 
 function App() {
+  const Dispatch = useDispatch()
   auth.onAuthStateChanged(user => {
-    if(user)
-    console.log(user)
+    if(user){
+    console.log("user",user)
+    console.log("user",{...auth.currentUser})
+    Dispatch(addUser({...auth.currentUser}))
+    }
     else{
       console.log(user)
+      Dispatch(deleteUser())
       return  <Navigate to="/"   />;
     }
     
-  })
+  }) 
+  useEffect(() => {if(auth.currentUser){
+    console.log("user",{...auth.currentUser})
+    Dispatch(addUser({...auth.currentUser}))
+  }},[])
   const [login, setLogin] = useState(true)
   return (
     <UserProvider>

@@ -4,7 +4,7 @@ import { padding } from "@mui/system";
 import { useContext } from "react";
 import { UserContext } from "../DATA/userContext";
 import { auth } from "../FirebaseConfig";
-
+import images from "../Images/images.jpeg";
 
 
 
@@ -17,7 +17,7 @@ const Profile = () => {
         <div className="profile">
             <Paper elevation={3} sx={{padding:2}} >
              <img src="/src/Images/images.jpeg" alt="" />
-             <img src={user.Profile} alt="" />
+             <img src={images} alt="" />
              <h1>{user.Firstname}</h1>
             {auth.currentUser.displayName&&(<h1>{auth.currentUser.displayName}</h1>)}
             <h1>hi</h1>

@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { auth } from '../FirebaseConfig';
 import { signOut } from 'firebase/auth';
+import { useSelector } from 'react-redux';
 
 
 
@@ -37,7 +38,10 @@ const Navbar = () => {
     //     console.log(route)
     //     history("/"+route);
     // }
-    const loggedin = false;
+    const user = useSelector((state) => state.users.user)
+    //const loggedin = auth.currentUser;
+    // const loggedin = user.displayName;
+    const loggedin = user.isLoggedIn;
 
     return (<div className="nav">
         <AppBar color="primary1">
