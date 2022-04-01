@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs,deleteDoc ,doc, query, where, endAt, orderBy, limit } from "firebase/firestore";
+import { addDoc,setDoc,serverTimestamp, collection, getDocs,deleteDoc ,doc, query, where, endAt, orderBy, limit } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
@@ -10,6 +10,8 @@ import { db, auth } from "../FirebaseConfig";
 
 const Home = () => {
     const postCollectionref = collection(db, 'posts')
+    const userCollectionref = collection(db, 'users')
+    // const userRef = doc(db, 'users', auth.currentUser?.uid);
     const user = useSelector((state) => state.users.user)
     console.log("state user", user)
     const [post, setPost] = useState('')
@@ -39,15 +41,31 @@ const Home = () => {
       // const data = await getDocs(q2);
         const data = await getDocs(postCollectionref);
         console.log(data);
-        setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        setPostList(data.docs.map((doc) => (console.log(doc.data()),{ ...doc.data(), id: doc.id })));
       };
     const addPost = async () => {
         await addDoc(postCollectionref,
             {post: post,
-            author:{name: auth.currentUser.displayName ,id: auth.currentUser.uid}})
+            author:{name: auth.currentUser.displayName ,id: auth.currentUser.uid},
+            timestamp: serverTimestamp()})
             getPosts()
     }
-    
+    const addUser = async () => {
+      const userRef = doc(db, 'users', auth.currentUser?.uid);
+      await setDoc(userRef,{ personalDetails: {name: auth.currentUser.displayName,age:21,Location :'Eluru'} })
+          getPosts()
+  }
+  // const useriNFOCollectionref = collection(db, 'users/'+auth.currentUser?.uid+'/DATA')
+  // const userInfoRef = doc(db, 'users/'+auth.currentUser?.uid, auth.currentUser?.uid);
+  const addUserInfo = async () => {
+    // const userRef = doc(db, 'users', auth.currentUser?.uid).collection('DATA')
+    const useriNFOCollectionref = collection(db, 'users/'+auth.currentUser?.uid+'/Data')
+    const userInfoRef = doc(db, 'users/'+auth.currentUser?.uid+'/Data', auth.currentUser?.uid);
+    await addDoc(userInfoRef,
+        {name: auth.currentUser.displayName,
+         age:10})
+        getPosts()
+}
       const deletePost = async (id) => {
           console.log(id)
           // if(auth.currentUser.uid!= id){
@@ -66,6 +84,7 @@ const Home = () => {
       }, []);
        
     return (<div className="home">
+      <button onClick={addUser}>test</button>
       <ImUpload></ImUpload>
       <h1>{user.displayName?user.displayName:null}</h1>
       {auth.currentUser&& <h1>{auth.currentUser.displayName}</h1>}

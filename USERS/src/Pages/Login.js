@@ -1,7 +1,7 @@
 import {  signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { auth } from "../FirebaseConfig";
 import { addUser } from "../Redux/slices/Users";
 
@@ -23,6 +23,7 @@ const Login = () => {
       localStorage.setItem("isAuth", true);
       // Dispatch(addUser(auth.currentUser))
        Dispatch(addUser({...auth.currentUser}))
+       return  <Navigate to="/profile"   />;
     } catch (error) {
       console.log(error.message);
     }

@@ -62,6 +62,7 @@ const ImUpload = () => {
         //     }
         // )
     }
+ 
   
     console.log(baseRef)
     console.log(progress)

@@ -1,5 +1,6 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { auth } from "../FirebaseConfig";
 
 const Signup = () => {
@@ -19,6 +20,7 @@ const Signup = () => {
           console.log(auth.currentUser)
           console.log(auth)
           localStorage.setItem("isAuth", true);
+          return  <Navigate to="/profile"   />;
         }
         
         catch (error) {

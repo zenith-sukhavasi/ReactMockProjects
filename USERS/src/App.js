@@ -5,7 +5,6 @@ import { Routes, Route, BrowserRouter as Router, Navigate } from "react-router-d
 import Profile from "./Pages/Profile";
 import { UserProvider } from "./DATA/userContext";
 import ProtectedRoute from "./Components/ProtectedRoute";
-import Sample from "./Pages/Sample";
 import { useEffect, useState } from "react";
 import { Container } from "@mui/material";
 import Login from "./Pages/Login";
