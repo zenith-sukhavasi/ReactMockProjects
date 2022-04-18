@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 import ImUpload from "../Components/ImUpload";
 import Post from "../Components/Post";
 import { db, auth } from "../FirebaseConfig";
-
+import {  updateProfile } from "firebase/auth";
 
 
 const Home = () => {
@@ -87,6 +87,7 @@ const Home = () => {
       <button onClick={addUser}>test</button>
       <ImUpload></ImUpload>
       <h1>{user.displayName?user.displayName:null}</h1>
+      <img src={user.photoURL} alt="profile" />
       {auth.currentUser&& <h1>{auth.currentUser.displayName}</h1>}
         <input type="text" onChange={(e) => setPost(e.target.value)} />
         <button onClick={handlePost}>post</button>

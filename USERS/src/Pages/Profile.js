@@ -17,6 +17,7 @@ const Profile = () => {
         <div className="profile">
             <Paper elevation={3} sx={{padding:2}} >
              <img src="/src/Images/images.jpeg" alt="" />
+             <img src={auth.currentUser.photoURL} alt="" />
              <img src={images} alt="" />
              <h1>{user.Firstname}</h1>
             {auth.currentUser.displayName&&(<h1>{auth.currentUser.displayName}</h1>)}

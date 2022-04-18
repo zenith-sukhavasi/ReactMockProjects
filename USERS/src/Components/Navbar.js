@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { auth } from '../FirebaseConfig';
 import { signOut } from 'firebase/auth';
 import { useSelector } from 'react-redux';
+import { Avatar } from '@mui/material';
 
 
 
@@ -67,6 +68,8 @@ const Navbar = () => {
 
                 <Button color="inherit" onClick={handleClick}>Login</Button>
                 {!loggedin && <Button color="inherit" onClick={handleClick}>Login</Button>}
+                {loggedin && <Avatar src={auth.currentUser.photoURL}
+                                         imgProps={{ 'aria-hidden': true }}/>}
                 <Menu
                     id="basic-menu"
                     anchorEl={anchorEl}
