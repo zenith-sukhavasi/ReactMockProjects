@@ -68,7 +68,7 @@ const Navbar = () => {
 
                 <Button color="inherit" onClick={handleClick}>Login</Button>
                 {!loggedin && <Button color="inherit" onClick={handleClick}>Login</Button>}
-                {loggedin && <Avatar src={auth.currentUser.photoURL}
+                {loggedin && <Avatar src={user.photoURL}
                                          imgProps={{ 'aria-hidden': true }}/>}
                 <Menu
                     id="basic-menu"

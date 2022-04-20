@@ -3,9 +3,12 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { auth, storage } from "../FirebaseConfig";
 import { modifyUser } from "../Redux/slices/Users";
-
+ //import {addPhoto} from "../Functions/Collections";
+ import { useContext } from "react";
+ import { UserContext } from "../DATA/userContext";
 
 const ImUpload = () => {
+    const{addPhoto}=useContext(UserContext)
     const [file, setFile] = useState()
     const [url, setUrl] = useState("");
     const [progress, setProgress] = useState(0);
@@ -80,6 +83,7 @@ const ImUpload = () => {
                         console.log(url)
                         console.log("done")
                         dispatch(modifyUser({photoURL:url}))
+                        addPhoto(url)
                     });
                 console.log("done")
             }
