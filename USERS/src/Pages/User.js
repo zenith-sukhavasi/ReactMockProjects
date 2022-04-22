@@ -26,7 +26,7 @@ const User = () => {
     getUser();
   }, []);
   console.log(uid);
-  const [user, setUser] = useContext(UserContext);
+  const {user, setUser} = useContext(UserContext);
   console.log(user);
   return (
     <div className="user">

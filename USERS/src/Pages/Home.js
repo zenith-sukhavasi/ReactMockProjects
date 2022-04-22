@@ -107,7 +107,7 @@ const Home = () => {
       {postLists.map((post) => (
         <div className="post" key={post.id}>
           {/* <p>{post.post}</p>  */}
-          <Post post={post} deletePost={deletePost}></Post>
+          <Post post={post} deletePost={deletePost} id={auth.currentUser?.uid}></Post>
         </div>
       ))}
     </div>
