@@ -11,7 +11,7 @@ import images from "../Images/images.jpeg";
 
 
 const Profile = () => {
-    const[user,setUser]=useContext(UserContext)
+    const{user,setUser}=useContext(UserContext)
     console.log(user)
     return (  
         <div className="profile">

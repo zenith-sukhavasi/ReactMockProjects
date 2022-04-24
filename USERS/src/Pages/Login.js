@@ -9,6 +9,9 @@ import { addUser } from "../Redux/slices/Users";
 
 const Login = () => {
   const Dispatch = useDispatch()
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [loginstate,setLoginState] = useState(false); 
   const login = async () => {
     try {
       const user = await signInWithEmailAndPassword(
@@ -23,13 +26,17 @@ const Login = () => {
       localStorage.setItem("isAuth", true);
       // Dispatch(addUser(auth.currentUser))
        Dispatch(addUser({...auth.currentUser}))
-       return  <Navigate to="/profile"   />;
+       setLoginState(true)
+      // return  (<Navigate to="/profile"   />)
     } catch (error) {
       console.log(error.message);
     }
   };
-    const [loginEmail, setLoginEmail] = useState("");
-    const [loginPassword, setLoginPassword] = useState("");
+  if (loginstate) {
+    console.log(loginstate);
+    return  (<Navigate to="/profile"   />)
+  }
+  console.log(loginstate);
     return ( <div className="login">
 
 <div>
