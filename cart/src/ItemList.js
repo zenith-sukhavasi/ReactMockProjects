@@ -1,27 +1,15 @@
-import { useEffect, useContext } from "react"
-import ADDitem from "./ADDitem"
-// import ADDitems from "./ADDitems"
 import items from "./DATA"
+import { useContext } from "react";
 import { GlobalContext } from "./GlobalContext"
+import ADDitem from "./ADDitem"
 
-
-const Store = () => {
-
+const ItemList = ({cat}) => {
+    console.log(cat)
     const [Cartitems, setitems] = useContext(GlobalContext)
-    // console.log(items[0])
-    console.log(Cartitems)
-    useEffect(() => {
-        console.log("ran")
-    })
-    // const ADDitem = (item) => {
-    //     useADDitem(item)
-    // }
-
-
-    return (
-        <div className="store">
-            <div className="list">
-            {items.map(item => (
+    const Citems = items.filter(item => item.category === cat)
+    return ( 
+        <div className="list">
+             {Citems.map(item => (
                 <div className="item" key={item.name}>
                     <img src={item.img} alt="" />
                     {console.log(item.img)}
@@ -33,9 +21,8 @@ const Store = () => {
                     {/* <button value={item} onClick={() => <ADDitems item={item}></ADDitems>} >BUY</button> */}
                 </div>
             ))}
-            </div>
         </div>
-    );
+     );
 }
-
-export default Store;
+ 
+export default ItemList;

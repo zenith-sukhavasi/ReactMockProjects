@@ -14,9 +14,45 @@ code {
 nav{
   height : 60px;
   background-color:blue;
-  display:flex;
+  /* display:flex;
   justify-content: flex-end;
+  align-items: flex-end; */
   padding: 10px;
+   position: fixed;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  top: 0px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-content: center;
+  align-items: center;
+  grid-gap:10%
+}
+.links a{
+  color: white;
+  text-decoration: none;
+}
+.links a:hover{
+  color: greenyellow;
+  margin-bottom: 10px;
+  border-bottom: 1px solid greenyellow;
+}
+.links{
+  display: flex;
+    justify-content: space-between;
+    width: inherit;
+    max-width: 400px;
+    padding-right: 20px;
+    margin: auto;
+}
+.scroll{
+  position: fixed;
+  width: -webkit-fill-available;
+  top: 0px;
+}
+
+.list,.store{
+  margin-top:80px;
 }
 .scart{
   width: 50px;
@@ -49,4 +85,29 @@ color:white;
 .item img{
   height: 300px;
   width: 300px;
+}
+
+.list{
+  display: grid;
+  /* grid-template-columns: repeat(3, minmax(240px, 1fr)); */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap:10px;
+  max-width:1200px;
+  margin:80px auto;
+  padding-left: 10px;
+}
+.item{
+  max-width:400px;
+  margin:0 auto;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
